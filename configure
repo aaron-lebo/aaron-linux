@@ -1,0 +1,22 @@
+#!/bin/bash 
+
+sed -i 's/#en_US.UTF-8/en_US.UTF-8/' /etc/locale.gen
+locale-gen
+echo LANG=en_US.UTF-8 > /etc/locale.conf
+
+ln -sf /usr/share/zoneinfo/US/Central /etc/localtime
+hwclock --systohc --utc
+
+mkinitcpio -p linux
+
+pacman -S --noconfirm grub os-prober dosfstools efibootmgr
+grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=arch_grub --recheck
+grub-mkconfig -o /boot/grub/grub.cfg
+
+echo alamo > /etc/hostname
+sed -i 's/localhost$/alamo/g' /etc/hosts
+systemctl enable dhcpcd@eno1.service
+
+passwd
+
+exit
