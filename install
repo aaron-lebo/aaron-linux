@@ -1,5 +1,10 @@
 #!/bin/bash 
 
+r() {
+  # borrowed from aui
+  arch-chroot /mnt /bin/bash -c "${1}"
+}
+
 timedatectl set-ntp true
 
 parted /dev/sda mklabel gpt -s
@@ -21,26 +26,24 @@ pacstrap /mnt base base-devel
 
 genfstab -U /mnt > /mnt/etc/fstab
 
-arch-chroot /mnt /bin/bash << EOF 
-  sed -i 's/#en_US.UTF-8/en_US.UTF-8/' /etc/locale.gen
-  locale-gen 
-  echo LANG=en_US.UTF-8 > /etc/locale.conf
+r "sed -i 's/#en_US.UTF-8/en_US.UTF-8/' /etc/locale.gen"
+r "locale-gen"
+r "echo LANG=en_US.UTF-8 > /etc/locale.conf"
 
-  ln -sf /usr/share/zoneinfo/US/Central /etc/localtime
-  hwclock --systohc --utc
+r "ln -sf /usr/share/zoneinfo/US/Central /etc/localtime"
+r "hwclock --systohc --utc"
 
-  mkinitcpio -p linux
+r "mkinitcpio -p linux"
 
-  pacman -S --noconfirm grub os-prober dosfstools efibootmgr 
-  grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=arch_grub --recheck
-  grub-mkconfig -o /boot/grub/grub.cfg 
+r "pacman -S --noconfirm grub os-prober dosfstools efibootmgr"
+r "grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=arch_grub --recheck"
+r "grub-mkconfig -o /boot/grub/grub.cfg" 
 
-  echo alamo > /etc/hostname 
-  sed -i 's/localhost$/alamo/g' /etc/hosts 
-  systemctl enable dhcpcd@eno1.service 
+r "echo alamo > /etc/hostname" 
+r "sed -i 's/localhost$/alamo/g' /etc/hosts"
+r "systemctl enable dhcpcd@eno1.service"
 
-  passwd 
-EOF
+r "passwd" 
 
 umount -R /mnt
 reboot
