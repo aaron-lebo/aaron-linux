@@ -28,18 +28,21 @@ genfstab -U /mnt > /mnt/etc/fstab
 
 r "sed -i 's/#en_US.UTF-8/en_US.UTF-8/' /etc/locale.gen"
 r "locale-gen"
-r "echo LANG=en_US.UTF-8 > /etc/locale.conf"
+r "echo LANG=en_US.UTF-8 >> /etc/locale.conf"
 
 r "ln -sf /usr/share/zoneinfo/US/Central /etc/localtime"
 r "hwclock --systohc --utc"
 
 r "mkinitcpio -p linux"
 
-r "pacman -S --noconfirm grub os-prober dosfstools efibootmgr"
-r "grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=arch_grub --recheck"
-r "grub-mkconfig -o /boot/grub/grub.cfg" 
+r "bootctl install" 
+r "echo title	Arch Linux >> /boot/loader/entries/arch.conf"
+r "echo linux	/vmlinuz-linux >> /boot/loader/entries/arch.conf"
+r "echo initrd	/initramfs-linux.img >> /boot/loader/entries/arch.conf"
+r "echo options	root=/dev/sda3 rw >> /boot/loader/entries/arch.conf"
+r "sed -i 's/default.*/default arch/' /boot/loader/loader.conf"
 
-r "echo alamo > /etc/hostname" 
+r "echo alamo >> /etc/hostname" 
 r "sed -i 's/localhost$/alamo/g' /etc/hosts"
 r "systemctl enable dhcpcd@eno1.service"
 
