@@ -26,7 +26,7 @@ pacstrap /mnt base base-devel
 
 genfstab -U /mnt > /mnt/etc/fstab
 
-r "sed -i 's/#en_US.UTF-8/en_US.UTF-8/' /etc/locale.gen"
+r "sed -i 's/#\(en_US.UTF-8\)/\1/' /etc/locale.gen"
 r "locale-gen"
 r "echo LANG=en_US.UTF-8 >> /etc/locale.conf"
 
@@ -40,7 +40,7 @@ r "echo title	Arch Linux >> /boot/loader/entries/arch.conf"
 r "echo linux	/vmlinuz-linux >> /boot/loader/entries/arch.conf"
 r "echo initrd	/initramfs-linux.img >> /boot/loader/entries/arch.conf"
 r "echo options	root=/dev/sda3 rw >> /boot/loader/entries/arch.conf"
-r "sed -i 's/default.*/default arch/' /boot/loader/loader.conf"
+r "sed -i 's/\(default\).*/\1 arch/' /boot/loader/loader.conf"
 
 r "echo alamo >> /etc/hostname" 
 r "sed -i 's/localhost$/alamo/g' /etc/hosts"
