@@ -2,4 +2,18 @@
 
 useradd -m -G wheel -s /bin/bash aaron
 passwd aaron
-sed -i 's/# \(%wheel ALL=(ALL) ALL\)/\1/g' /etc/sudoers
+sudo sed -i 's/# \(%wheel ALL=(ALL) ALL\)/\1/g' /etc/sudoers
+
+mkdir ~/builds 
+cd ~/builds
+
+aur() {
+  curl -L -O https://aur.archlinux.org/cgit/aur.git/snapshot/$1.tar.gz
+  tar -xvf $1.tar.gz
+  cd $1
+  makepkg -sri --skippgpcheck
+  cd ..
+}
+
+aur cower 
+aur pacaur 
