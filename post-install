@@ -3,6 +3,7 @@
 useradd -m -G wheel -s /bin/bash aaron
 passwd aaron
 sudo sed -i 's/# \(%wheel ALL=(ALL) ALL\)/\1/g' /etc/sudoers
+su aaorn
 
 mkdir ~/builds 
 cd ~/builds
@@ -17,3 +18,5 @@ aur() {
 
 aur cower 
 aur pacaur 
+
+pacaur -S nvidia-beta xorg-xinit
