@@ -14,4 +14,6 @@ aur() {
 aur cower 
 aur pacaur 
 
+cd ~
+
 pacaur -S nvidia-beta xorg-xinit
