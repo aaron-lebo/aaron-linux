@@ -22,7 +22,7 @@ echo '[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx' >> ~/.bash_profile
 pacaur -S bspwm sxhkd gnome-terminal
 touch ~/.xinitrc
 echo -e 'sxhkd &\nexec bspwm' >> ~/.xinitrc
-echo 'XDG_CONFIG_HOME="$HOME/.config"' >> ~/.bash_profile
+echo 'export XDG_CONFIG_HOME="$HOME/.config"' >> ~/.bash_profile
 mkdir ~/.config ~/.config/bspwm ~/.config/sxhkd
 cp /usr/share/doc/bspwm/examples/bspwmrc ~/.config/bspwm/ 
 cp /usr/share/doc/bspwm/examples/sxhkdrc ~/.config/sxhkd/
