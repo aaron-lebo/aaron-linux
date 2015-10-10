@@ -2,20 +2,17 @@
 
 # pacaur 
 mkdir ~/builds 
-cd ~/builds
 
 aur() {
   curl -L -O https://aur.archlinux.org/cgit/aur.git/snapshot/$1.tar.gz
   tar -xvf $1.tar.gz
-  cd $1
+  cd ~/builds/$1
   makepkg -sri --skippgpcheck
-  cd ..
+  cd ~ 
 }
 
 aur cower 
 aur pacaur 
-
-cd ~
 
 # nvidia drivers and x
 pacaur -S nvidia-beta xorg-xinit
@@ -25,6 +22,7 @@ echo '[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx' >> ~/.bash_profile
 pacaur -S bspwm sxhkd
 touch ~/.xinitrc
 echo -e 'sxhkd &\nexec bspwm' >> ~/.xinitrc
+mkdir ~/.config
 echo 'XDG_CONFIG_HOME="$HOME/.config"' >> ~/.bash_profile
 cp /usr/share/doc/bspwm/examples/bspwmrc ~/.config/bspwm/ 
 cp /usr/share/doc/bspwm/examples/sxhkdrc ~/.config/sxhkd/
