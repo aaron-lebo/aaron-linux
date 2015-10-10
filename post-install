@@ -16,15 +16,15 @@ aur pacaur
 
 # nvidia drivers and x
 pacaur -S nvidia-beta xorg-xinit
+echo 'export XDG_CONFIG_HOME="$HOME/.config"' >> ~/.bash_profile
 echo '[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx' >> ~/.bash_profile
 
 # bspwm
 pacaur -S bspwm sxhkd gnome-terminal
-touch ~/.xinitrc ~/.profile
+touch ~/.xinitrc
 echo -e 'sxhkd &\nexec bspwm' >> ~/.xinitrc
-echo 'export XDG_CONFIG_HOME="$HOME/.config"' >> ~/.profile
 mkdir ~/.config ~/.config/bspwm ~/.config/sxhkd
 cp /usr/share/doc/bspwm/examples/bspwmrc ~/.config/bspwm/ 
 cp /usr/share/doc/bspwm/examples/sxhkdrc ~/.config/sxhkd/
-ed -i 's/urxvt/gnome-terminal/' ~/.config/sxhkd/sxhkdrc
+sed -i 's/urxvt/gnome-terminal/' ~/.config/sxhkd/sxhkdrc
 chmod +x ~/.config/bspwm/bspwmrc
