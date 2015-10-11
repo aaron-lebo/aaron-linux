@@ -29,7 +29,7 @@ mkdir ~/.config ~/.config/bspwm ~/.config/sxhkd
 cp /usr/share/doc/bspwm/examples/bspwmrc ~/.config/bspwm/ 
 cp /usr/share/doc/bspwm/examples/sxhkdrc ~/.config/sxhkd/
 sed -i 's/urxvt/xfce4-terminal/' ~/.config/sxhkd/sxhkdrc
-sed -i 's/dmenu_run/rofi --show run -font "Ubuntu Mono 11"/' ~/.config/sxhkd/sxhkdrc
+sed -i 's/dmenu_run/rofi -show run -font "Ubuntu Mono 11"/' ~/.config/sxhkd/sxhkdrc
 chmod +x ~/.config/bspwm/bspwmrc
 
 # infinality
