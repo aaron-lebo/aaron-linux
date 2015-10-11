@@ -4,9 +4,10 @@
 mkdir ~/builds 
 
 aur() {
+  cd ~/builds
   curl -L -O https://aur.archlinux.org/cgit/aur.git/snapshot/$1.tar.gz
   tar -xvf $1.tar.gz
-  cd ~/builds/$1
+  cd $1
   makepkg -sri --skippgpcheck
   cd ~ 
 }
@@ -14,8 +15,8 @@ aur() {
 aur cower 
 aur pacaur 
 
-# nvidia drivers and x
-pacaur -S nvidia-beta xorg-xinit
+# drivers and x
+pacaur -S xf86-video-nouveau xorg-xinit xorg-server
 echo 'export XDG_CONFIG_HOME="$HOME/.config"' >> ~/.bash_profile
 echo '[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx' >> ~/.bash_profile
 
