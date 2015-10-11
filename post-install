@@ -21,11 +21,11 @@ echo 'export XDG_CONFIG_HOME="$HOME/.config"' >> ~/.bash_profile
 echo '[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx' >> ~/.bash_profile
 
 # bspwm
-pacaur -S bspwm sxhkd gnome-terminal
+pacaur -S bspwm sxhkd xfce4-terminal
 touch ~/.xinitrc
 echo -e 'sxhkd &\nexec bspwm' >> ~/.xinitrc
 mkdir ~/.config ~/.config/bspwm ~/.config/sxhkd
 cp /usr/share/doc/bspwm/examples/bspwmrc ~/.config/bspwm/ 
 cp /usr/share/doc/bspwm/examples/sxhkdrc ~/.config/sxhkd/
-sed -i 's/urxvt/gnome-terminal/' ~/.config/sxhkd/sxhkdrc
+sed -i 's/urxvt/xfce4-terminal/' ~/.config/sxhkd/sxhkdrc
 chmod +x ~/.config/bspwm/bspwmrc
