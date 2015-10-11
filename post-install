@@ -21,7 +21,7 @@ pacaur -S xorg-xinit xorg-server
 echo '[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx' >> ~/.bash_profile
 
 # bspwm
-pacaur -S bspwm sxhkd xfce4-terminal
+pacaur -S bspwm sxhkd xfce4-terminal rofi
 echo 'export XDG_CONFIG_HOME="$HOME/.config"' >> ~/.bash_profile
 touch ~/.xinitrc
 echo -e 'sxhkd &\nexec bspwm' >> ~/.xinitrc
@@ -29,6 +29,7 @@ mkdir ~/.config ~/.config/bspwm ~/.config/sxhkd
 cp /usr/share/doc/bspwm/examples/bspwmrc ~/.config/bspwm/ 
 cp /usr/share/doc/bspwm/examples/sxhkdrc ~/.config/sxhkd/
 sed -i 's/urxvt/xfce4-terminal/' ~/.config/sxhkd/sxhkdrc
+sed -i 's/dmenu_run/rofi --show run -font "Ubuntu Mono 11"/' ~/.config/sxhkd/sxhkdrc
 chmod +x ~/.config/bspwm/bspwmrc
 
 # infinality
@@ -39,3 +40,9 @@ sudo dirmngr < /dev/null
 sudo pacman-key -r 962DDE58
 sudo pacman-key --lsign-key 962DDE58
 pacaur -Syu infinality-bundle infinality-bundle-multilib ibfonts-meta-base ibfonts-meta-extended
+
+# theme
+pacaur -S gtk-theme-arc-git lxappearance
+
+# utilities
+pacaur -S firefox
