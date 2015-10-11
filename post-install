@@ -42,7 +42,7 @@ sudo pacman-key --lsign-key 962DDE58
 pacaur -Syu infinality-bundle infinality-bundle-multilib ibfonts-meta-base ibfonts-meta-extended
 
 # theme
-pacaur -S gtk-theme-arc-git lxappearance
+pacaur -S gtk-theme-arc-git lxappearance qt-config-qt4
 
 # utilities
 pacaur -S firefox
