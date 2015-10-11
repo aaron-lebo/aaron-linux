@@ -8,20 +8,21 @@ aur() {
   curl -L -O https://aur.archlinux.org/cgit/aur.git/snapshot/$1.tar.gz
   tar -xvf $1.tar.gz
   cd $1
-  makepkg -sri --skippgpcheck
-  cd ~ 
+  makepkg -sri
 }
 
 aur cower 
 aur pacaur 
 
-# drivers and x
-pacaur -S xf86-video-nouveau xorg-xinit xorg-server
-echo 'export XDG_CONFIG_HOME="$HOME/.config"' >> ~/.bash_profile
+cd ~ 
+
+# x
+pacaur -S xorg-xinit xorg-server
 echo '[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx' >> ~/.bash_profile
 
 # bspwm
 pacaur -S bspwm sxhkd xfce4-terminal
+echo 'export XDG_CONFIG_HOME="$HOME/.config"' >> ~/.bash_profile
 touch ~/.xinitrc
 echo -e 'sxhkd &\nexec bspwm' >> ~/.xinitrc
 mkdir ~/.config ~/.config/bspwm ~/.config/sxhkd
