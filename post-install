@@ -8,7 +8,7 @@ aur() {
   curl -L -O https://aur.archlinux.org/cgit/aur.git/snapshot/$1.tar.gz
   tar -xvf $1.tar.gz
   cd $1
-  makepkg -sri
+  makepkg -sri --skippgpcheck
 }
 
 aur cower 
@@ -35,6 +35,7 @@ chmod +x ~/.config/bspwm/bspwmrc
 echo -e '\n[infinality-bundle]\nServer = http://bohoomil.com/repo/$arch' | sudo tee -a /etc/pacman.conf
 echo -e '\n[infinality-bundle-multilib]\nServer = http://bohoomil.com/repo/multilib/$arch' | sudo tee -a /etc/pacman.conf
 echo -e '\n[infinality-bundle-fonts]\nServer = http://bohoomil.com/repo/fonts' | sudo tee -a /etc/pacman.conf
+dirmngr < /dev/null
 sudo pacman-key -r 962DDE58
 sudo pacman-key --lsign-key 962DDE58
 pacaur -Syu infinality-bundle infinality-bundle-multilib ibfonts-meta-base ibfonts-meta-extended
