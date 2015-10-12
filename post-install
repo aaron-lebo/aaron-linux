@@ -27,6 +27,7 @@ touch ~/.xinitrc
 echo -e 'sxhkd &\nexec bspwm' >> ~/.xinitrc
 mkdir ~/.config ~/.config/bspwm ~/.config/sxhkd
 cp /usr/share/doc/bspwm/examples/bspwmrc ~/.config/bspwm/ 
+sed -i 's/\(0.5\)2/\1/' ~/.config/bspwm/bspwmrc
 cp /usr/share/doc/bspwm/examples/sxhkdrc ~/.config/sxhkd/
 sed -i 's/urxvt/xfce4-terminal/' ~/.config/sxhkd/sxhkdrc
 sed -i 's/dmenu_run/rofi -show run -font "Ubuntu Mono 11"/' ~/.config/sxhkd/sxhkdrc
