@@ -42,9 +42,11 @@ sudo pacman-key -r 962DDE58
 sudo pacman-key --lsign-key 962DDE58
 pacaur -Syu infinality-bundle infinality-bundle-multilib ibfonts-meta-base ibfonts-meta-extended
 
-# theme & compoton
-pacaur -S gtk-theme-arc-git lxappearance compton
-sed -i '1i\compton -b' ~/.xinitrc
+# theme & appearance
+pacaur -S gtk-theme-arc-git lxappearance feh compton 
+feh --bg-scale ~/aaron-linux/wallpaper.png 
+sed -i '1i\sh ~/.fehbg &' ~/.xinitrc
+sed -i '2i\compton -b' ~/.xinitrc
 
 # utilities
 pacaur -S firefox
