@@ -1,5 +1,7 @@
 #!/bin/bash 
 
+cp -a ./dotfiles/. ~
+
 # pacaur 
 mkdir ~/builds 
 
@@ -18,19 +20,9 @@ cd ~
 
 # x
 pacaur -S xorg-xinit xorg-server
-echo '[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx' >> ~/.bash_profile
 
 # bspwm
 pacaur -S bspwm sxhkd xfce4-terminal rofi
-echo 'export XDG_CONFIG_HOME="$HOME/.config"' >> ~/.bash_profile
-touch ~/.xinitrc
-echo -e 'sxhkd &\nexec bspwm' >> ~/.xinitrc
-mkdir ~/.config ~/.config/bspwm ~/.config/sxhkd
-cp /usr/share/doc/bspwm/examples/bspwmrc ~/.config/bspwm/ 
-sed -i 's/\(0.5\)2/\1/' ~/.config/bspwm/bspwmrc
-cp /usr/share/doc/bspwm/examples/sxhkdrc ~/.config/sxhkd/
-sed -i 's/urxvt/xfce4-terminal/' ~/.config/sxhkd/sxhkdrc
-sed -i 's/dmenu_run/rofi -show run -font "Ubuntu Mono 11" -fg "#b3bdcb" -bg "#2a303b" -hlfg "#e1e5ea" -hlbg "#5294e2"/' ~/.config/sxhkd/sxhkdrc
 chmod +x ~/.config/bspwm/bspwmrc
 
 # infinality
@@ -44,9 +36,6 @@ pacaur -Syu infinality-bundle infinality-bundle-multilib ibfonts-meta-base ibfon
 
 # theme & appearance
 pacaur -S gtk-theme-arc-git lxappearance feh compton 
-feh --bg-scale ~/aaron-linux/wallpaper.png 
-sed -i '1i\sh ~/.fehbg &' ~/.xinitrc
-sed -i '2i\compton -b' ~/.xinitrc
 
 # utilities
 pacaur -S firefox
