@@ -38,4 +38,5 @@ pacaur -Syu infinality-bundle infinality-bundle-multilib ibfonts-meta-base ibfon
 pacaur -S gtk-theme-arc-git lxappearance feh compton 
 
 # utilities
-pacaur -S firefox
+pacaur -S firefox emacs
+git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
